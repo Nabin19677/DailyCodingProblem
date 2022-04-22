@@ -7,7 +7,18 @@
 
 import assert from "assert";
 
-function getProduct(arr) {
+function getProductDivision(arr) {
+  let newArr = [];
+  let total = arr.reduce((prevValue, currentValue) => {
+    return prevValue * currentValue;
+  }, 1);
+  for (let i = 0; i < arr.length; i++) {
+    newArr.push(total / arr[i]);
+  }
+  return newArr;
+}
+
+function getProductWithOutDivision(arr) {
   let newArr = [];
   for (let i = 0; i < arr.length; i++) {
     newArr.push(
@@ -22,5 +33,10 @@ function getProduct(arr) {
   return newArr;
 }
 
-assert.deepEqual(getProduct([1, 2, 3, 4, 5]), [120, 60, 40, 30, 24]);
-assert.deepEqual(getProduct([3, 2, 1]), [2, 3, 6]);
+assert.deepEqual(
+  getProductWithOutDivision([1, 2, 3, 4, 5]),
+  [120, 60, 40, 30, 24]
+);
+assert.deepEqual(getProductWithOutDivision([3, 2, 1]), [2, 3, 6]);
+assert.deepEqual(getProductDivision([1, 2, 3, 4, 5]), [120, 60, 40, 30, 24]);
+assert.deepEqual(getProductDivision([3, 2, 1]), [2, 3, 6]);
